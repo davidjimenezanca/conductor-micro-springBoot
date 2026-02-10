@@ -1,0 +1,145 @@
+{
+  "ownerApp": null,
+  "createTime": 1769154708163,
+  "updateTime": 1770135727303,
+  "createdBy": null,
+  "updatedBy": null,
+  "accessPolicy": {},
+  "name": "microservice_orchestration",
+  "description": "Main workflow with one worker task as a microservice",
+  "version": 3,
+  "tasks": [
+    {
+      "name": "fork_task",
+      "taskReferenceName": "fork_task_ref",
+      "description": null,
+      "inputParameters": {},
+      "type": "FORK_JOIN",
+      "dynamicTaskNameParam": null,
+      "caseValueParam": null,
+      "caseExpression": null,
+      "scriptExpression": null,
+      "dynamicForkJoinTasksParam": null,
+      "dynamicForkTasksParam": null,
+      "dynamicForkTasksInputParamName": null,
+      "forkTasks": [
+        [
+          {
+            "name": "fraud-check-required",
+            "taskReferenceName": "fraud-check-required_ref",
+            "description": null,
+            "inputParameters": {
+              "amount": "${workflow.input.amount}"
+            },
+            "type": "SIMPLE",
+            "dynamicTaskNameParam": null,
+            "caseValueParam": null,
+            "caseExpression": null,
+            "scriptExpression": null,
+            "dynamicForkJoinTasksParam": null,
+            "dynamicForkTasksParam": null,
+            "dynamicForkTasksInputParamName": null,
+            "startDelay": 0,
+            "subWorkflowParam": null,
+            "sink": null,
+            "optional": false,
+            "taskDefinition": null,
+            "rateLimited": null,
+            "asyncComplete": false,
+            "loopCondition": null,
+            "retryCount": null,
+            "evaluatorType": null,
+            "expression": null
+          }
+        ],
+        [
+          {
+            "name": "get_customer_details",
+            "taskReferenceName": "get_customer_details_ref",
+            "description": null,
+            "inputParameters": {
+              "http_request": {
+                "uri": "https://orkes-api-tester.orkesconductor.com/api",
+                "method": "GET",
+                "accept": "application/json",
+                "contentType": "application/json"
+              }
+            },
+            "type": "HTTP",
+            "dynamicTaskNameParam": null,
+            "caseValueParam": null,
+            "caseExpression": null,
+            "scriptExpression": null,
+            "dynamicForkJoinTasksParam": null,
+            "dynamicForkTasksParam": null,
+            "dynamicForkTasksInputParamName": null,
+            "startDelay": 0,
+            "subWorkflowParam": null,
+            "sink": null,
+            "optional": false,
+            "taskDefinition": null,
+            "rateLimited": null,
+            "asyncComplete": false,
+            "loopCondition": null,
+            "retryCount": null,
+            "evaluatorType": null,
+            "expression": null
+          }
+        ]
+      ],
+      "startDelay": 0,
+      "subWorkflowParam": null,
+      "sink": null,
+      "optional": false,
+      "taskDefinition": null,
+      "rateLimited": null,
+      "asyncComplete": false,
+      "loopCondition": null,
+      "retryCount": null,
+      "evaluatorType": null,
+      "expression": null
+    },
+    {
+      "name": "join_task",
+      "taskReferenceName": "join_task_ref",
+      "description": null,
+      "inputParameters": {},
+      "type": "JOIN",
+      "dynamicTaskNameParam": null,
+      "caseValueParam": null,
+      "caseExpression": null,
+      "scriptExpression": null,
+      "dynamicForkJoinTasksParam": null,
+      "dynamicForkTasksParam": null,
+      "dynamicForkTasksInputParamName": null,
+      "startDelay": 0,
+      "subWorkflowParam": null,
+      "joinOn": [
+        "get_customer_details_ref",
+        "fraud-check-required_ref"
+      ],
+      "sink": null,
+      "optional": false,
+      "taskDefinition": null,
+      "rateLimited": null,
+      "asyncComplete": false,
+      "loopCondition": null,
+      "retryCount": null,
+      "evaluatorType": null,
+      "expression": null
+    }
+  ],
+  "inputParameters": [
+    "amount"
+  ],
+  "outputParameters": {},
+  "failureWorkflow": null,
+  "schemaVersion": 2,
+  "restartable": true,
+  "workflowStatusListenerEnabled": false,
+  "ownerEmail": null,
+  "timeoutPolicy": "ALERT_ONLY",
+  "timeoutSeconds": 0,
+  "variables": {},
+  "inputTemplate": {}
+}
