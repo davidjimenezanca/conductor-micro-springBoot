@@ -17,7 +17,16 @@ docker run --init -p 9090:8080 -p 1234:5000 --mount source=redis,target=/redis \
 ```
 El UI del servidor de Conductor estará disponible en:
 
+```shell
 http://localhost:1234
+```
+y está levantado en el puerto 9090
 
-que está funcionando en el puerto 9090
+2. En la carpeta "examples" del proyecto, tenemos un json con el ejemplo para integrar este servicio. En la consola UI de Conductor definiremos un nuevo workflow:
+
+```shell
+conductor_workflow.json
+```
+
+3. 
 
