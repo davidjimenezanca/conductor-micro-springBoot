@@ -7,6 +7,9 @@ Este es un ejemplo de uso para la orquestación de microservicios con Conductor 
 2. Servidor Conductor funcionando en local
 3. Entornos Maven y Java 
 
+
+# Cómo se prueba
+
 **Crear contenedor para servidor Conductor versión Community**
 
 1. Chequear si tenemos docker instalado y ejecutar el siguiente comando para levantar el servidor en local:
