@@ -1,4 +1,4 @@
-# Event Driven Microservices Conductor
+# Orquestación de microservicios con Conductor
 
 Este es un ejemplo de uso para la orquestación de microservicios con Conductor [Conductor](https://github.com/conductor-oss/conductor). Este microservicio no incorpora el SDK del orquestador y es un servicio pensado para ser invocado vía API-REST desde una tarea del workflow
 
@@ -28,5 +28,23 @@ y está levantado en el puerto 9090
 conductor_workflow.json
 ```
 
-3. 
+3. Arrancamos nuestro microservicio en la misma máquina donde tenemos el servidor de Conductor:
 
+```shell
+mvn spring-boot:run
+``` 
+
+ Podemos comprobar que el API implementado en el microservicio está disponible en la URL -> 
+
+```shell 
+ http://localhost:8081/swagger-ui/index.html
+``` 
+
+4. Desde la pestaña Workbench del UI, seleccionando "Workflow Name" y "Workflow Version", y los parámetros de entrada podremos ejecutar este ejemplo. Un ejemplo de entrada:
+
+```shell
+{
+  "accountId": "093332211",
+  "amount": 100
+}
+```
