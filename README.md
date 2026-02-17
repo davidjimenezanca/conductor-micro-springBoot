@@ -40,7 +40,7 @@ mvn spring-boot:run
  http://localhost:8081/swagger-ui/index.html
 ``` 
 
-4. Desde la pestaña Workbench del UI, seleccionando "Workflow Name" y "Workflow Version", y los parámetros de entrada podremos ejecutar este ejemplo. Un ejemplo de entrada:
+4. Desde la pestaña Workbench del UI, seleccionando "Workflow Name", "Workflow Version", y los parámetros de entrada podremos ejecutar este caso de uso. Un ejemplo de objeto de entrada:
 
 ```shell
 {
