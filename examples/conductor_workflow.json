@@ -1,13 +1,13 @@
 {
   "ownerApp": null,
-  "createTime": 1769154708163,
-  "updateTime": 1770135727303,
+  "createTime": 1770135642060,
+  "updateTime": 1770218481201,
   "createdBy": null,
   "updatedBy": null,
   "accessPolicy": {},
-  "name": "microservice_orchestration",
-  "description": "Main workflow with one worker task as a microservice",
-  "version": 3,
+  "name": "orchestrator_no_workers_microservice",
+  "description": "Main workflow without workers tasks",
+  "version": 7,
   "tasks": [
     {
       "name": "fork_task",
@@ -29,9 +29,18 @@
             "taskReferenceName": "fraud-check-required_ref",
             "description": null,
             "inputParameters": {
-              "amount": "${workflow.input.amount}"
+              "http_request": {
+                "uri": "http://host.docker.internal:8082/deposit",
+                "method": "POST",
+                "accept": "application/json",
+                "contentType": "application/json",
+                "body": {
+                  "accountId": "${workflow.input.accountId}",
+                  "amount": "${workflow.input.amount}"
+                }
+              }
             },
-            "type": "SIMPLE",
+            "type": "HTTP",
             "dynamicTaskNameParam": null,
             "caseValueParam": null,
             "caseExpression": null,
@@ -130,6 +139,7 @@
     }
   ],
   "inputParameters": [
+    "accountId",
     "amount"
   ],
   "outputParameters": {},
@@ -137,7 +147,7 @@
   "schemaVersion": 2,
   "restartable": true,
   "workflowStatusListenerEnabled": false,
-  "ownerEmail": null,
+  "ownerEmail": "david.jimenez@sabadelldigital.com",
   "timeoutPolicy": "ALERT_ONLY",
   "timeoutSeconds": 0,
   "variables": {},
